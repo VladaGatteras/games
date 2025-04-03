@@ -1,5 +1,1 @@
-streamlit
-random
-base64
-logging
-os
+streamlit==1.44.1
