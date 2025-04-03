@@ -12,14 +12,15 @@ log_path = os.path.join(os.path.dirname(__file__), "birthday_quest.log")
 logging.basicConfig(filename=log_path, level=logging.INFO,
                     format="%(asctime)s - %(levelname)s - %(message)s")
 
-# --- Добавляем CSS для уменьшения размера текста кнопок ---
+# --- Добавляем CSS для кнопок (уменьшенный размер и запрет переноса текста) ---
 st.markdown(
     """
     <style>
-    /* Снижаем размер шрифта и уменьшаем отступы для всех кнопок */
+    /* Снижаем размер шрифта и уменьшаем отступы для всех кнопок, запрещая перенос текста */
     div.stButton > button {
         font-size: 12px;
         padding: 0.4em 0.8em;
+        white-space: nowrap;
     }
     </style>
     """,
