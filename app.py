@@ -12,6 +12,20 @@ log_path = os.path.join(os.path.dirname(__file__), "birthday_quest.log")
 logging.basicConfig(filename=log_path, level=logging.INFO,
                     format="%(asctime)s - %(levelname)s - %(message)s")
 
+# --- Добавляем CSS для уменьшения размера текста кнопок ---
+st.markdown(
+    """
+    <style>
+    /* Снижаем размер шрифта и уменьшаем отступы для всех кнопок */
+    div.stButton > button {
+        font-size: 12px;
+        padding: 0.4em 0.8em;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # --- Фон ---
 
 
@@ -153,6 +167,7 @@ if "character" not in st.session_state:
                 """,
                 unsafe_allow_html=True
             )
+            # Центрирование кнопки "Выбрать"
             col_left, col_center, col_right = st.columns([1, 2, 1])
             with col_center:
                 st.button(
