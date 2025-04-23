@@ -67,7 +67,9 @@ def set_background_from_file(file_path):
         st.error("Ошибка загрузки фона")
         logging.error(f"Ошибка при загрузке фона: {e}")
 
-set_background_from_file("pictures/image.png")
+image_path = os.path.join(os.path.dirname(__file__), "pictures", "image.png")
+set_background_from_file(image_path)
+
 
 # --- Загрузка данных персонажей из JSON ---
 def load_characters(path="characters_data"):
