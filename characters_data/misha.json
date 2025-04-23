@@ -1,0 +1,17 @@
+{
+  "name": "Миша",
+  "image": "pictures/Миша.png",
+  "questions": [],
+  "donation_links": [
+    { "name": "Соберушка", "url": "https://donate-misha.com" }
+  ],
+  "phone_donation": {
+    "banks": ["Альфа", "Сбер"],
+    "phone": "+7-900-222-2222"
+  },
+  "bonus": {
+    "title": "Интересный факт о Мише",
+    "content": "Миша знает наизусть все шутки с корпоративов последних трёх лет.",
+    "image": "pictures/миша_мем.png"
+  }
+}

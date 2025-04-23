@@ -1,0 +1,17 @@
+{
+  "name": "Таня",
+  "image": "pictures/Таня.png",
+  "questions": [],
+  "donation_links": [
+    { "name": "Карта с котиками", "url": "https://donate-tanya.com" }
+  ],
+  "phone_donation": {
+    "banks": ["Сбер", "Тинькофф", "ЮMoney"],
+    "phone": "+7-900-444-4444"
+  },
+  "bonus": {
+    "title": "Таня в цифрах",
+    "content": "Может написать 100 сообщений в чате за 10 минут — и все по делу!",
+    "image": "pictures/таня_мем.png"
+  }
+}

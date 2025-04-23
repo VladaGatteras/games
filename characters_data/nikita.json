@@ -1,0 +1,17 @@
+{
+  "name": "Никита",
+  "image": "pictures/Никита.png",
+  "questions": [],
+  "donation_links": [
+    { "name": "Т-банк", "url": "https://donate-nikita.com" }
+  ],
+  "phone_donation": {
+    "banks": ["Сбер", "Тинькофф", "ВТБ"],
+    "phone": "+7-900-111-1111"
+  },
+  "bonus": {
+    "title": "Факт о Никите",
+    "content": "Никита может объяснить любой баг как фичу!",
+    "image": "pictures/никита_мем.png"
+  }
+}

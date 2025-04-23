@@ -1,0 +1,17 @@
+{
+  "name": "Семён",
+  "image": "pictures/Семён.png",
+  "questions": [],
+  "donation_links": [
+    { "name": "ТинькофПэй", "url": "https://donate-semyon.com" }
+  ],
+  "phone_donation": {
+    "banks": ["Тинькофф"],
+    "phone": "+7-900-333-3333"
+  },
+  "bonus": {
+    "title": "Факт про Семёна",
+    "content": "Семён умеет деплоить в пятницу и не боится жить.",
+    "image": "pictures/семен_мем.png"
+  }
+}
