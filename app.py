@@ -78,7 +78,10 @@ def load_characters(path="characters_data"):
                 characters.append(json.load(f))
     return characters
 
-characters = load_characters()
+characters = sorted(load_characters(), key=lambda c: ["Босс отдела", "Алина", "Никита", "Миша", "Семён", "Таня"].index(c["name"]))
+
+# --- Открытые персонажи ---
+opened_characters = ["Босс отдела", "Алина"]
 
 # --- Функции ---
 def select_character(index):
@@ -127,33 +130,35 @@ if "character" not in st.session_state:
             )
             col_left, col_center, col_right = st.columns([1, 2, 1])
             with col_center:
-                st.button("Выбрать", key=f"select_{i}", on_click=select_character, args=(i,))
+                if char["name"] in opened_characters:
+                    st.button("Выбрать", key=f"select_{i}", on_click=select_character, args=(i,))
+                else:
+                    st.markdown(
+                        "<p style='text-align: center; font-size: 14px; color: gray;'>Персонаж ещё не открыт</p>",
+                        unsafe_allow_html=True
+                    )
 else:
     char = st.session_state.character
     st.subheader(f"Ты выбрал: {char['name']}")
-    if len(char.get("questions", [])) > 0 and st.session_state.stage < len(char["questions"]):
+    questions = char.get("questions", [])
+
+    if questions and st.session_state.stage < len(questions):
         stage = st.session_state.stage
-        q = char["questions"][stage]
+        q = questions[stage]
         st.subheader(f"Вопрос {stage + 1}: {q['question']}")
         st.radio("Выбери ответ:", q["options"], key=f"q{stage}")
         st.button("Ответить", key=f"submit_{stage}", on_click=check_answer)
         if "error" in st.session_state:
             st.error(st.session_state.error)
             del st.session_state.error
-    elif len(char.get("questions", [])) == 0:
-        st.warning("У этого персонажа пока нет вопросов, но ты можешь поддержать подарок!")
-        st.markdown("---")
-        st.markdown("### 🎁 Поддержи подарок имениннику:")
-        for link in char.get("donation_links", []):
-            st.markdown(f"**💸 {link['name']}:** [Перевести]({link['url']})")
-        phone = char.get("phone_donation", {})
-        if phone:
-            st.markdown(f"**📱 По номеру телефона (СБП, {', '.join(phone['banks'])}):** {phone['phone']}")
-        if st.button("Вернуться на главную"):
-            for key in list(st.session_state.keys()):
-                del st.session_state[key]
+
+    elif not questions:
+        st.warning("Персонаж ещё в разработке!")
+        st.markdown("<h3 style='text-align: center;'>Загляни позже — квиз будет готов!</h3>", unsafe_allow_html=True)
+        st.image("pictures/waiting.png", width=200)
+
     else:
-        st.subheader("🎉 Квест завершён!")
+        st.subheader("🎉 Квиз завершён!")
         st.markdown(f"**Ты прошёл путь с персонажем:** {char['name']}")
         st.markdown("---")
         st.markdown("### 🎁 Поддержи подарок имениннику:")
@@ -162,12 +167,24 @@ else:
         phone = char.get("phone_donation", {})
         if phone:
             st.markdown(f"**📱 По номеру телефона (СБП, {', '.join(phone['banks'])}):** {phone['phone']}")
-        if st.button("Я задонатил! Открыть бонус персонажа"):
+
+        if questions and st.button("Я задонатил! Открыть бонус персонажа"):
             st.balloons()
             st.success(char["bonus"]["title"])
             st.markdown(char["bonus"]["content"])
             if "image" in char["bonus"]:
-                st.image(char["bonus"]["image"], use_column_width=True)
-        if st.button("Пройти заново"):
-            for key in list(st.session_state.keys()):
-                del st.session_state[key]
+                st.image(
+                    char["bonus"]["image"],
+                    output_format="auto",
+                    caption="",
+                    clamp=True,
+                    use_container_width=False,
+                    width=350
+                )
+
+    # --- Кнопка назад — всегда внизу ---
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button("Вернуться на главную", key="back_to_main_final"):
+        for key in list(st.session_state.keys()):
+            del st.session_state[key]
+        st.rerun()
