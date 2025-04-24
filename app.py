@@ -108,7 +108,7 @@ def check_answer():
 st.markdown("<br>", unsafe_allow_html=True)
 header_cols = st.columns(7)
 with header_cols[3]:
-    st.image("pictures/head.png", width=300)
+    st.image("pictures/head.png", width=250)
 
 instr_cols = st.columns(3)
 with instr_cols[1]:
