@@ -1,3 +1,5 @@
+# Выбрать 
+# Персонаж
 import streamlit as st
 import random
 import base64
@@ -80,10 +82,10 @@ def load_characters(path="characters_data"):
                 characters.append(json.load(f))
     return characters
 
-characters = sorted(load_characters(), key=lambda c: ["Босс отдела", "Алина", "Никита", "Миша", "Семён", "Таня"].index(c["name"]))
+characters = sorted(load_characters(), key=lambda c: ["Босс", "Алина", "Никита", "Миша", "Семён", "Таня"].index(c["name"]))
 
 # --- Открытые персонажи ---
-opened_characters = ["Босс отдела"]#, "Алина"
+opened_characters = ["Босс"]#, "Алина"
 
 # --- Функции ---
 def select_character(index):
@@ -111,7 +113,7 @@ with header_cols[3]:
 instr_cols = st.columns(3)
 with instr_cols[1]:
     st.markdown(
-        "<p style='text-align: center; font-size: 20px;'>Нажми кнопку <strong>Выбрать</strong>, чтобы начать!</p>",
+        "<p style='text-align: center; font-size: 20px;'><strong>Проверь, насколько хорошо ты знаешь дата-аналитиков и получи бонус!</strong></p>",
         unsafe_allow_html=True,
     )
 
@@ -133,7 +135,7 @@ if "character" not in st.session_state:
             col_left, col_center, col_right = st.columns([1, 2, 1])
             with col_center:
                 if char["name"] in opened_characters:
-                    st.button("Выбрать", key=f"select_{i}", on_click=select_character, args=(i,))
+                    st.button("Уровень доступен", key=f"select_{i}", on_click=select_character, args=(i,))
                 else:
                     st.markdown(
                         "<p style='text-align: center; font-size: 14px; color: gray;'>Персонаж ещё не открыт</p>",
