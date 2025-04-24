@@ -83,7 +83,7 @@ def load_characters(path="characters_data"):
 characters = sorted(load_characters(), key=lambda c: ["Босс отдела", "Алина", "Никита", "Миша", "Семён", "Таня"].index(c["name"]))
 
 # --- Открытые персонажи ---
-opened_characters = ["Босс отдела", "Алина"]
+opened_characters = ["Босс отдела"]#, "Алина"
 
 # --- Функции ---
 def select_character(index):
